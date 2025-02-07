@@ -16,6 +16,17 @@ Define a dictionary consisting of valid four-letter words. Store the following l
 Implement a method to randomly select a word from this list.
 Implement a method to accept a guess and check if it matches the selected word.
 
+Milestone Two: User Interface
+Develop a terminal user interface for the game. Start by welcoming the user, explaining the game rules, and then proceeding with the game. 
+Sample prompts might include:
+Welcome to Word Guess! You have 5 turns to guess the word. Please enter your first guess:
+
+Wrong guess! Try again:
+
+You got it! Amazing!
+
+You're out of turns, game over!
+
 """
 
 class Wordle:
@@ -47,8 +58,25 @@ class Wordle:
 
 def main():
     wordle = Wordle(["able", "belt", "bolt", "cast", "cash", "knot", "note", "near", "over", "salt", "wind"])
-    print(wordle.set_random_word())
-    print(wordle.check_guess("word"))
+    wordle.set_random_word()
+    number_of_guesses = 5
+    curr = number_of_guesses
+    print(wordle.random_word)
+    while curr > 0:
+        if curr == number_of_guesses:
+            guess = input("Welcome to Word Guess! You have 5 turns to guess the word. Please enter your first guess:")
+        else:
+            guess = input("Enter another guess:")
+        
+        if wordle.check_guess(guess):
+            print("You got it! Amazing!")
+            break
+        else:
+            if curr-1 == 0:
+                print("You're out of turns, game over!")
+            else:
+                print("Wrong Guess. Try Again!")
+            curr-=1
 
 
 if __name__ == "__main__":
